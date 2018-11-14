@@ -46,9 +46,9 @@ var replyService = (function() {
 		$.ajax({
 			type:'delete',
 			url:'/replies/' + rno,
-			success:function(deleteResult, status, xhr){
+			success:function(result, status, xhr){
 				if(callback){
-					callback(deleteResult);
+					callback(result);
 				}
 			},
 			error:function(xhr, status, er){
