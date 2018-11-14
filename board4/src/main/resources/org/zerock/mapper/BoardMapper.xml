@@ -43,6 +43,12 @@
   and bno>(select max(bno) - 100000 from tbl_board) 
   </select>
   
+  <update id="updateReplyCnt">
+  	update tbl_board set replyCnt = replyCnt + #{amount} where bno = #{bno}
+  </update>
+  
+  
+  
   <sql id="searchSQL">
   <if test="types != null">
 	  <foreach collection="types" item="item" open="AND (" close=")" separator="OR">

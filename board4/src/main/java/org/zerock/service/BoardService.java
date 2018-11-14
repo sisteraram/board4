@@ -16,7 +16,7 @@ public List<BoardVO> getList(PageParam param);
 	
 	public int modify(BoardVO vo);
 	
-	public int delete(BoardVO vo);
+	public boolean delete(BoardVO vo);
 	
 	public int count(PageParam param);
 	

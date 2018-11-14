@@ -63,10 +63,14 @@ public class BoardServiceImpl implements BoardService {
 		return mapper.modify(vo);
 	}
 
+	
+	@Transactional
 	@Override
-	public int delete(BoardVO vo) {
+	public boolean delete(BoardVO vo) {
 
-		return mapper.delete(vo);
+		attachMapper.deleteAll(vo.getBno());
+		
+		return mapper.delete(vo) == 1;
 	}
 
 	@Override

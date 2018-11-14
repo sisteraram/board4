@@ -238,6 +238,8 @@ li {
 						
 						showList(1);
 						
+						
+						//댓글 리스트 뿌려주는 function
 						function showList(page) {
 							
 							console.log("show list " + page);
@@ -280,6 +282,7 @@ li {
 						var pageNum = 1;
 						var replyPageFooter = $(".panel-footer");
 						
+						//댓글 페이징 처리하기 위한 function
 						function showReplyPage(replyCnt){
 							
 							var endNum = Math.ceil(pageNum / 10.0) * 10;
@@ -321,6 +324,7 @@ li {
 						}
 						
 						
+						//페이지 버튼 눌렀을 때 그 페이지 불러오도록 처리
 						replyPageFooter.on("click", "li a", function(e) {
 							
 							e.preventDefault();
@@ -370,6 +374,7 @@ li {
 						})();
 						
 						
+						//이미지파일이면 원본 파일, 아니면 다운로드
 						$(".uploadResult").on("click", "li", function(e){
 							console.log("view image");
 							var liObj = $(this);
@@ -384,14 +389,22 @@ li {
 						});
 						
 						
+						//이미지파일 클릭시 효과 처리
 						function showImage(fileCallPath){
-							alert(fileCallPath);
 							
 							$(".bigPictureWrapper").css("display", "flex").show();
 							$(".bigPicture")
 							.html("<img src='/display?fileName=" + fileCallPath + "'>")
 							.animate({width:'100%', height:'100%'}, 1000);
 						}
+						
+						
+						$(".bigPictureWrapper").on("click", function(e) {
+							$(".bigPicture").animate({width:'0%', height:'0%'}, 1000);
+							setTimeout(function(){
+								$(".bigPictureWrapper").hide();
+							}, 1000);
+						});
 
 						
 						var modal = $(".modal");
@@ -404,6 +417,8 @@ li {
 						var modalRegisterBtn = $("#modalRegisterBtn");
 						var modalCloseBtn = $("#modalCloseBtn");
 
+						
+						//새 댓글 등록 버튼 이벤트 처리
 						$("#addReplyBtn").on("click", function(e) {
 							modal.find("input").val("");
 							modalInputReplyDate.closest("div").hide();
@@ -415,7 +430,7 @@ li {
 
 						});
 						
-						
+						//댓글 등록 버튼 이벤트 처리
 						modalRegisterBtn.on("click", function(e) {
 							
 							var reply = {
@@ -433,11 +448,13 @@ li {
 							});
 						});
 						
+						//댓글 모달 close 버튼
 						modalCloseBtn.on("click", function (e) {
 							modal.modal("hide");
 						});
 						
 						
+						//댓글 리스트 클릭 이벤트 처리
 						$(".chat").on("click", "li", function(e) {
 							var rno = $(this).data("rno");
 							replyService.get(rno, function(reply) {
@@ -455,6 +472,7 @@ li {
 							});
 						});
 						
+						//댓글 수정 버튼 이벤트처리
 						modalModBtn.on("click", function(e) {
 							var reply = {rno:modal.data("rno"), reply:modalInputReply.val()};
 							
@@ -465,6 +483,7 @@ li {
 							});
 						});
 						
+						//댓글 삭제 버튼 이벤트처리
 						modalRemoveBtn.on("click", function(e) {
 							var rno = modal.data("rno");
 							
@@ -472,9 +491,10 @@ li {
 								
 								modal.modal("hide");
 								showList(pageNum);
-							})
-						})
-					});
+							});
+						});//end removebtn 
+						
+					});//end ready
 </script>
 </body>
 
