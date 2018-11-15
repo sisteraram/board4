@@ -24,14 +24,6 @@
 		up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/" />
 
-	<beans:bean id="viewInter"
-		class="org.zerock.interceptor.ViewInterceptor"></beans:bean>
-	<interceptors>
-		<interceptor>
-			<mapping path="/board/read" />
-			<beans:ref bean="viewInter" />
-		</interceptor>
-	</interceptors>
 
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources 
