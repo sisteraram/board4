@@ -75,7 +75,6 @@
                 <hr class="my-4" />
                 <button id="btn" type="submit" class="btn btn-primary">Done</button>
                 <button type="reset" class="btn btn-default">Reset</button>
-                <!-- Description -->
 			</form>
             </div>
           </div>
@@ -90,14 +89,15 @@
       
       <script>
 $(document).ready(function(e) {
-	var formObj = $("form[role='form']");
 	
+	var formObj = $("form[role='form']");
 	
 	
 	$("button[type='submit']").on("click", function(e) {
 		e.preventDefault();
 		
 		console.log("submit clicked");
+		
 		var str = "";
 		$(".uploadResult ul li").each(function(i, obj) {
 			var jobj = $(obj);
@@ -113,7 +113,7 @@ $(document).ready(function(e) {
 	
 	
 	
-	var regex = new RegExp("(.*?)\.(exe|sh|zip|alz)&");
+	var regex = new RegExp("(.*?)\.(exe|sh|zip|alz)$");
 	var maxSize = 5342880;
 	
 	

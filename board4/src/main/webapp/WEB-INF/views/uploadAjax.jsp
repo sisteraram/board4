@@ -89,7 +89,7 @@
 		
 		$(".bigPictureWrapper").on("click", function(e) {
 			$(".bigPicture").animate({width: '0%', height:'0%'}, 1000);
-			setTimeout(()=>{
+			setTimeout(() => {
 				$(this).hide();
 			}, 1000);
 		});

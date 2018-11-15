@@ -384,7 +384,7 @@ li {
 							if(liObj.data("type")){
 								showImage(path.replace(new RegExp(/\\/g),"/"));
 							}else{
-								self.location = "/download?filename=" + path;
+								self.location = "/download?fileName=" + path;
 							}
 						});
 						

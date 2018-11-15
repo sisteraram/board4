@@ -57,10 +57,27 @@ public class BoardServiceImpl implements BoardService {
 		return mapper.read(vo);
 	}
 
+	
+	@Transactional
 	@Override
-	public int modify(BoardVO vo) {
+	public boolean modify(BoardVO vo) {
 
-		return mapper.modify(vo);
+		log.info("modify ...." + vo);
+		
+		attachMapper.deleteAll(vo.getBno());
+		
+		boolean modifyResult = mapper.modify(vo) == 1;
+		
+		if (modifyResult && vo.getAttachList().size() > 0) {
+			
+			vo.getAttachList().forEach(attach -> {
+				
+				attach.setBno(vo.getBno());
+				attachMapper.insert(attach);
+			});
+		}
+		
+		return modifyResult;
 	}
 
 	

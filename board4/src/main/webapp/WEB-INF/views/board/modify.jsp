@@ -282,42 +282,49 @@ $(document).ready(function() {
 			});
 			uploadUL.append(str);
 		}
+	});
+	
+	var formObj = $("form");
+	$('button').on("click", function(e) {
 		
-		var formObj = $("form");
-		/* $('button').on("click", function(e) {
+		e.preventDefault();
+		
+		var operation = $(this).data("oper");
+		
+		console.log(operation);
+		
+		if (operation === 'delete') {
+			formObj.attr("action", "/board/delete");
+		}else if (operation === 'list') {
+			formObj.attr("action", "/board/list");
+		}else if (operation === 'modify') {
 			
-			e.preventDefault();
+			console.log("submit clicked");
 			
-			var operation = $(this).data("oper");
+			var str = "";
 			
-			console.log(operation);
 			
-			if (operation === 'delete') {
-				formObj.attr("action", "/board/delete");
-			}else if (operation === 'list') {
-				formObj.attr("action", "/board/list");
-			}else if (operation === 'modify') {
+			$(".uploadResult ul li").each(function(i, obj) {
 				
-				console.log("submit clicked");
+				var jobj = $(obj);
 				
-				var str = "";
+				console.dir(jobj);
+				
+				str += "<input type='hidden' name='attachList[" + i + "].fileName' value='" + jobj.data("filename") + "'>";
+				str += "<input type='hidden' name='attachList[" + i + "].uuid' value='" + jobj.data("uuid") + "'>";
+				str += "<input type='hidden' name='attachList[" + i + "].uploadPath' value='" + jobj.data("path") + "'>";
+				str += "<input type='hidden' name='attachList[" + i + "].fileType' value='" + jobj.data("type") + "'>";
 				
 				
-				$(".uploadResult ul li").each(function(i, obj) {
-					
-					var jobj = $(obj);
-					
-					console.dir(jobj);
-					
-					
-					
-				});
 				
-			}
+			});
 			
-			
-			
-		}) */
+			formObj.append(str).submit();
+		}
+		
+		formObj.submit();
+		
+	}); 
 	
 	
 });

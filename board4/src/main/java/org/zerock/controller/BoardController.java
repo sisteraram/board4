@@ -66,7 +66,7 @@ public class BoardController {
 	@PostMapping("/modify")
 	public String modifyPOST(@ModelAttribute("pageObj") PageParam param, BoardVO vo, RedirectAttributes rttr) {
 		
-		rttr.addFlashAttribute("result", service.modify(vo) == 1? "SUCCESS":"FAIL");
+		rttr.addFlashAttribute("result", service.modify(vo)? "SUCCESS":"FAIL");
 		
 		return "redirect:/board/list" + param.getLink();
 	}
@@ -88,6 +88,7 @@ public class BoardController {
 	@GetMapping(value="/getAttachList", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseBody
 	public ResponseEntity<List<BoardAttachVO>> getAttachList(Long bno){
+		
 		log.info("getAttachList" + bno);
 		
 		return new ResponseEntity<>(service.getAttachList(bno), HttpStatus.OK);
