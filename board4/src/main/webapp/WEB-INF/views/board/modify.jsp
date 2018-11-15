@@ -284,7 +284,7 @@ $(document).ready(function() {
 		}
 		
 		var formObj = $("form");
-		$('button').on("click", function(e) {
+		/* $('button').on("click", function(e) {
 			
 			e.preventDefault();
 			
@@ -317,7 +317,7 @@ $(document).ready(function() {
 			
 			
 			
-		})
+		}) */
 	
 	
 });
